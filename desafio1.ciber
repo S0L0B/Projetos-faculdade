@@ -1,0 +1,25 @@
+def verificar_hashes(lista_hashes):
+    """Percorre a lista de pares de hashes e verifica sua integridade."""
+    for hash_comparacao in lista_hashes:
+        # Divide o par pelo separador ","
+        hash_calculado, hash_esperado = hash_comparacao.split(",")
+        
+        # Remove espaços extras para evitar erros
+        hash_calculado = hash_calculado.strip()
+        hash_esperado = hash_esperado.strip()
+        
+        # Verifica se os hashes coincidem
+        if hash_calculado == hash_esperado:
+            print("Correto")
+        else:
+            print("Inválido")
+
+
+# Entrada do usuário
+hashes_usuario = input("Digite os pares de hashes (separados por ';'): ")
+
+# Divide os pares de hashes pelo ponto e vírgula ";"
+lista_hashes = hashes_usuario.split(";")
+
+# Chama a função para verificar os hashes
+verificar_hashes(lista_hashes)
