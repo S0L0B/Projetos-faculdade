@@ -1,0 +1,132 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 150
+
+/*Beatriz Faria dos Santos 1240111560
+Thamiris Cândido Guilhermino 1240110572
+Juliana Santos Martins 1240111856
+Rodrigo Mello Costa da Silva 1240108044
+Rodrigo Manhães Cosenza 1240108118
+*/
+
+
+typedef struct {
+   char nome[51]; // só serão aceitos 50 caracteres e o 0
+   int ano;
+   float notaMedia;
+   int qntdAvl;
+} Filme;
+
+void menu(); // para direcionar o menu
+int cadastrarFilme(Filme filmes[], int *numFilmes);
+int adicionarAvl(Filme filmes[], int numFilmes);
+void filmesCadastrados(Filme filmes[], int numFilmes);
+
+int main() {
+    menu();
+    return 0;
+}
+
+int cadastrarFilme(Filme filmes[], int *numFilmes) {
+    if (*numFilmes >= MAX) {
+        printf("Limite de filmes atingido.\n"); //quando bater o número máximo de filmes cadastrados
+        return 0;
+    }
+
+    Filme novoFilme;
+    printf("Digite o nome: ");
+    getchar(); //serve de limpeza do buffer
+    fgets(novoFilme.nome, 51, stdin);
+    novoFilme.nome[strcspn(novoFilme.nome, "\n")] = 0;
+
+    printf("Digite o ano de lançamento: ");
+    scanf("%d", &novoFilme.ano);
+
+    novoFilme.notaMedia = 0.0;
+    novoFilme.qntdAvl = 0;
+
+    filmes[*numFilmes] = novoFilme;
+    (*numFilmes)++; //para aumentar a quantidade de filmes
+    printf("Filme adicionado!\n");
+    return 1;
+}
+
+int adicionarAvl(Filme filmes[], int numFilmes) {
+    char nome[51];
+    float nota;
+
+    printf("Digite o nome do filme: ");
+    getchar(); 
+    fgets(nome, 51, stdin);
+    nome[strcspn(nome, "\n")] = 0;
+
+    for (int i = 0; i < numFilmes; i++) {
+        if (strcmp(filmes[i].nome, nome) == 0) {
+            printf("Digite a nota de 0 a 5: ");
+            scanf("%f", &nota);
+
+            if (nota < 0 || nota > 5) {
+                printf("Nota inválida!\n");
+                return 0;
+            }
+
+            filmes[i].qntdAvl++; // para atualizar os valores
+            filmes[i].notaMedia = ((filmes[i].notaMedia * (filmes[i].qntdAvl - 1)) + nota) / filmes[i].qntdAvl;
+            printf("Avaliação feita!\n");
+            return 1;
+        }
+    }
+
+    printf("Filme não encontrado!\n");
+    return 0;
+}
+
+void filmesCadastrados(Filme filmes[], int numFilmes) {
+    if (numFilmes == 0) {
+        printf("Nenhum filme cadastrado.\n");
+        return;
+    }
+
+    printf("\nFilmes cadastrados:\n");
+    for (int i = 0; i < numFilmes; i++) {
+        printf("Nome: %s\n", filmes[i].nome);
+        printf("Ano de lançamento: %d\n", filmes[i].ano);
+        printf("Quantidade de Avaliações: %d\n", filmes[i].qntdAvl);
+        printf("Nota Média: %.2f\n\n", filmes[i].notaMedia);
+    }
+}
+
+void menu() {
+    Filme filmes[MAX];
+    int numFilmes = 0;
+    int opcao;
+
+    do {
+        printf("\n--- MENU ---\n");
+        printf("1 - Cadastrar filme\n");
+        printf("2 - Avaliar Filme\n");
+        printf("3 - Exibir todos os filmes\n");
+        printf("0 - Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrarFilme(filmes, &numFilmes);
+                break;
+            case 2:
+                adicionarAvl(filmes, numFilmes);
+                break;
+            case 3:
+                filmesCadastrados(filmes, numFilmes);
+                break;
+            case 0:
+                printf("Saindo.\n");
+                break;
+            default:
+                printf("Opção inválida!\n");
+                break;
+        }
+    } while (opcao != 0);
+}

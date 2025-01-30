@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/*Beatriz Faria dos Santos 1240111560
+Thamiris Cândido Guilhermino 1240110572
+Juliana Santos Martins 1240111856
+Rodrigo Mello Costa da Silva 1240108044
+Rodrigo Manhães Cosenza 1240108118
+*/
+
+typedef struct {
+    char nome[100];
+    float *notas;
+    float media;
+} Aluno;
+// Função para uso de dados 
+void inserirDados(Aluno *alunos, int numAlunos, int numNotas) {
+    for (int i = 0; i < numAlunos; i++) {
+        printf("\nDigite o nome do aluno %d: ", i + 1);
+        scanf(" %[^\n]", alunos[i].nome);
+
+        alunos[i].notas = (float *)malloc(numNotas * sizeof(float));
+        if (alunos[i].notas == NULL) {
+            printf("Erro ao alocar memória para as notas.\n");
+            exit(1);
+        }
+
+        float soma = 0;
+        for (int j = 0; j < numNotas; j++) {
+            printf("Digite a nota %d de %s: ", j + 1, alunos[i].nome);
+            scanf("%f", &alunos[i].notas[j]);
+            soma += alunos[i].notas[j];
+        }
+        alunos[i].media = soma / numNotas;
+    }
+}
+// Função de Média 
+void exibirMedias(Aluno *alunos, int numAlunos) {
+    float somaGlobal = 0;
+    printf("\nMédias dos alunos:\n");
+    for (int i = 0; i < numAlunos; i++) {
+        printf("%s: %.2f\n", alunos[i].nome, alunos[i].media);
+        somaGlobal += alunos[i].media;
+    }
+    printf("\nMédia global da turma: %.2f\n", somaGlobal / numAlunos);
+}
+// Função de apagar os dados 
+void liberarMemoria(Aluno *alunos, int numAlunos) {
+    for (int i = 0; i < numAlunos; i++) {
+        free(alunos[i].notas);
+    }
+    free(alunos);
+}
+
+int main() {
+    int numAlunos, numNotas;
+// Menu para receber os dados 
+    printf("Digite o número de alunos: ");
+    scanf("%d", &numAlunos);
+    printf("Digite o número de notas por aluno: ");
+    scanf("%d", &numNotas);
+// Caso a lista estaja vazia 
+    Aluno *alunos = (Aluno *)malloc(numAlunos * sizeof(Aluno));
+    if (alunos == NULL) {
+        printf("Erro ao alocar memória para os alunos.\n");
+        return 1;
+    }
+
+    inserirDados(alunos, numAlunos, numNotas);
+
+    exibirMedias(alunos, numAlunos);
+
+    liberarMemoria(alunos, numAlunos);
+
+    return 0;
+}
