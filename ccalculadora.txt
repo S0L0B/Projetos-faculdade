@@ -1,0 +1,107 @@
+
+#include <stdio.h>
+#include <math.h>
+
+void soma(double a, double b) {
+    printf("Resultado da soma: %.2lf\n", a + b);
+}
+void subtracao(double a, double b) {
+    printf("Resultado da subtração: %.2lf\n", a - b);
+}
+void multiplicacao(double a, double b) {
+    printf("Resultado da multiplicação: %.2lf\n", a * b);
+}
+
+
+int exibir_menu() {
+    int opcao;
+    printf("\nEscolha uma operação:\n");
+    printf("1. Soma\n");
+    printf("2. Subtração\n");
+    printf("3. Multiplicação\n");
+    printf("4. Sair\n");
+    printf("Digite a opção (1-4): ");
+    if (scanf("%d", &opcao) != 1) {
+        while(getchar() != '\n');  
+        return -1;  
+    }
+    return opcao;
+}
+
+
+int obter_numeros(double* num1, double* num2) {
+    printf("Digite dois números: ");
+    if (scanf("%lf %lf", num1, num2) != 2) {
+        while(getchar() != '\n'); 
+        return 0;  
+    }
+    return 1; 
+}
+
+int main() {
+    int opcao;
+    double num1, num2;
+    int continuar = 1;
+
+    while (continuar) {
+        opcao = exibir_menu();  
+
+        if (opcao == -1) {
+            printf("Entrada inválida. Tente novamente.\n");
+            continue; 
+        }
+
+        switch (opcao) {
+            case 1: 
+                if (!obter_numeros(&num1, &num2)) {
+                    printf("Entrada inválida. Tente novamente.\n");
+                    continue; 
+                }
+                soma(num1, num2);
+                break;
+
+            case 2: 
+                if (!obter_numeros(&num1, &num2)) {
+                    printf("Entrada inválida. Tente novamente.\n");
+                    continue;
+                }
+                subtracao(num1, num2);
+                break;
+
+            case 3: 
+                if (!obter_numeros(&num1, &num2)) {
+                    printf("Entrada inválida. Tente novamente.\n");
+                    continue;
+                }
+                multiplicacao(num1, num2);
+                break;
+
+            case 4: 
+                printf("Desligando.\n");
+                continuar = 0;
+                break;
+
+            default: 
+                printf("Erro! Opção inválida. Tente novamente.\n");
+                break;
+        }
+
+        if (continuar) {
+            printf("\nDeseja realizar outra operação? (1 para sim, 0 para não): ");
+            if (scanf("%d", &continuar) != 1) {
+                printf("Entrada inválida. Tente novamente.\n");
+                while(getchar() != '\n');  
+                continuar = 0;  
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+

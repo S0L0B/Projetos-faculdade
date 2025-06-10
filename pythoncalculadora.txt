@@ -1,0 +1,78 @@
+def soma(a, b):
+    print(f"Resultado da soma: {a + b:.2f}")
+
+def subtracao(a, b):
+    print(f"Resultado da subtração: {a - b:.2f}")
+
+def multiplicacao(a, b):
+    print(f"Resultado da multiplicação: {a * b:.2f}")
+
+def exibir_menu():
+    print("\nEscolha uma operação:")
+    print("1. Soma")
+    print("2. Subtração")
+    print("3. Multiplicação")
+    print("4. Sair")
+    try:
+        opcao = int(input("Digite a opção (1-4): "))
+        return opcao
+    except ValueError:
+        return -1
+
+def obter_numeros():
+    try:
+        num1, num2 = map(float, input("Digite dois números: ").split())
+        return num1, num2
+    except ValueError:
+        return None, None
+
+def main():
+    continuar = True
+
+    while continuar:
+        opcao = exibir_menu()
+
+        if opcao == -1:
+            print("Entrada inválida. Tente novamente.")
+            continue
+
+        if opcao == 1:
+            num1, num2 = obter_numeros()
+            if num1 is None or num2 is None:
+                print("Entrada inválida. Tente novamente.")
+                continue
+            soma(num1, num2)
+
+        elif opcao == 2:
+            num1, num2 = obter_numeros()
+            if num1 is None or num2 is None:
+                print("Entrada inválida. Tente novamente.")
+                continue
+            subtracao(num1, num2)
+
+        elif opcao == 3:
+            num1, num2 = obter_numeros()
+            if num1 is None or num2 is None:
+                print("Entrada inválida. Tente novamente.")
+                continue
+            multiplicacao(num1, num2)
+
+        elif opcao == 4:
+            print("Desligando.")
+            continuar = False
+
+        else:
+            print("Erro! Opção inválida. Tente novamente.")
+
+        if continuar:
+            try:
+                continuar = int(input("\nDeseja realizar outra operação? (1 para sim, 0 para não): "))
+                if continuar != 1:
+                    continuar = False
+            except ValueError:
+                print("Entrada inválida. Tente novamente.")
+                continuar = False
+
+if __name__ == "__main__":
+    main()
+

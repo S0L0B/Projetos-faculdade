@@ -1,0 +1,66 @@
+
+# Classe para cálculo percentual 
+
+class Percentual: 
+
+    def _init_(self, numero): 
+
+        """Inicializa a classe com o número fornecido.""" 
+
+        self.numero = numero 
+
+  
+
+    def calcular_dez_porcento(self): 
+
+        """Calcula 10% do número armazenado.""" 
+
+        return self.numero * 0.10 
+
+  
+
+  
+
+# Função principal 
+
+def main(): 
+
+    # Solicitação do número ao usuário 
+
+    try: 
+
+        numero = float(input("Digite um número real: ")) 
+
+  
+
+        # Instanciação da classe Percentual 
+
+        calculador = Percentual(numero) 
+
+  
+
+        # Cálculo de 10% do número 
+
+        dez_por_cento = calculador.calcular_dez_porcento() 
+
+  
+
+        # Exibição do resultado 
+
+        print(f"10% de {numero:.2f} é: {dez_por_cento:.2f}") 
+
+  
+
+    except ValueError: 
+
+        print("Erro: por favor, insira um número válido.") 
+
+ 
+
+# Execução do programa 
+
+if _name_ == "_main_": 
+
+    main() 
+
+ 

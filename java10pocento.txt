@@ -1,0 +1,83 @@
+import java.util.Scanner; 
+
+  
+
+class Percentual { 
+
+    private double numero; 
+
+  
+
+    // Construtor 
+
+    public Percentual(double numero) { 
+
+        this.numero = numero; 
+
+    } 
+
+  
+
+    // Método para calcular 10% do número 
+
+    public double calcularDezPorCento() { 
+
+        return this.numero * 0.10; 
+
+    } 
+
+} 
+
+  
+
+public class Main { 
+
+    public static void main(String[] args) { 
+
+        // Criação do scanner para leitura do usuário 
+
+        Scanner scanner = new Scanner(System.in); 
+
+  
+
+        try { 
+
+            // Solicitação do número ao usuário 
+
+            System.out.print("Digite um número real: "); 
+
+            double numero = scanner.nextDouble(); 
+
+  
+
+            // Criação de um objeto da classe Percentual 
+
+            Percentual calculador = new Percentual(numero); 
+
+  
+
+            // Cálculo de 10% do número 
+
+            double dezPorCento = calculador.calcularDezPorCento(); 
+
+  
+
+            // Exibição do resultado 
+
+            System.out.printf("10%% de %.2f é: %.2f%n", numero, dezPorCento); 
+
+        } catch (Exception e) { 
+
+            System.out.println("Erro: Entrada inválida. Por favor, insira um número real."); 
+
+        } finally { 
+
+            // Fechando o scanner 
+
+            scanner.close(); 
+
+        } 
+
+    } 
+
+} 
