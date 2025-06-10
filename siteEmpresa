@@ -1,0 +1,142 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 19-Abr-2024 às 20:00
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `empresatropical`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mensagens`
+--
+
+CREATE TABLE `mensagens` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `mensagem` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `novidades`
+--
+
+CREATE TABLE `novidades` (
+  `id` int(11) NOT NULL,
+  `nome` text DEFAULT NULL,
+  `valor` float DEFAULT NULL,
+  `qtdestoque` int(11) DEFAULT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `novidades`
+--
+
+INSERT INTO `novidades` (`id`, `nome`, `valor`, `qtdestoque`, `image`) VALUES
+(4, 'Kit de Hidratacao', 300, 100, 'Img2/hidratacao.jpg'),
+(5, 'Kit Limpeza de Pele', 259.99, 150, 'Img2/kit limpeza.jpg'),
+(6, 'kit Paleta de Sombra', 190, 150, 'Img2/kit sombra.jpg'),
+(7, 'kit Batom Liquido', 284.99, 200, 'Img2/kit batom.jpg'),
+(8, 'kit Perfume', 350, 200, 'Img2/kitperfume.jpg'),
+(9, 'kit Pente e Escova', 50, 100, 'Img2/kit escova.jpg'),
+(10, 'Kit Pinceis de Maquiagem', 124.99, 100, 'Img2/marketing-loja-cosmeticos.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(75) NOT NULL,
+  `valor` float NOT NULL,
+  `qtdestoque` int(11) NOT NULL,
+  `imagem` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `nome`, `valor`, `qtdestoque`, `imagem`) VALUES
+(4, 'Paleta de Sombra', 55.9, 72, 'IMG/paleta-de-sombras-10-cores-make-up-mylife-my8111.jpg'),
+(5, 'Agua Micelar', 44.99, 100, 'IMG/maquiagem-para-pele-oleosa-como-usar-lista-dos-melhores-produtos-26.jpg'),
+(6, 'Creme Capilar', 89.99, 0, 'IMG/prancheta-1-y4lv43ao4r.jpg'),
+(7, 'Creme Hidratante Corporal', 75, 40, 'IMG/cosmeticos.jpg'),
+(8, 'Mascara Facial', 30, 25, 'IMG/argila-branca_orig.jpg'),
+(9, 'Oleo Capilar de Argan', 29.99, 90, 'IMG/startups.jpg'),
+(10, 'Shampoo e Condicionador', 53.9, 0, 'IMG/K752_kit_cabelos_quimicamente_tratados_shampoo_e_condicionador_1.jpg'),
+(11, 'Sabonete Liquido 1L', 25, 30, 'IMG/Sab-liq-premisse-tangerina-cha-verde-1l.jpg'),
+(12, 'Lapis de contorno labial', 29.9, 10, 'IMG/Q2022111323_Lapis_Batom_Marronis_Nudetis_Vermetis_color.jpg'),
+(13, 'Oleo de banho 1L', 175, 35, 'IMG/691114.jpg'),
+(15, 'Prancha de cabelo', 99, 50, 'IMG\\prancha_alisadora_de_cabelo_titanio_230c_aliss_2759_3_c1e0174bba091a6348ebb109a1560e0a.jpg');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `novidades`
+--
+ALTER TABLE `novidades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `novidades`
+--
+ALTER TABLE `novidades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de tabela `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
